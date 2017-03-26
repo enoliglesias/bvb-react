@@ -3,6 +3,23 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = { recipes: [] }
+  }
+
+
+  componentWillMount() {
+    fetch(`http://beginveganbegun.es/wp-json/wp/v2/posts?filter[date_query][after]=1984-01-01&per_page=3333`)
+    .then(response => response.json())
+      .then(recipes => {
+        this.setState({
+          recipes: recipes
+        });
+      });
+    }
+
   render() {
     return (
       <div className="App">
