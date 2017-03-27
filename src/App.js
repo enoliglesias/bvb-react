@@ -11,7 +11,6 @@ class App extends Component {
 
 
   componentWillMount() {
-    fetch(`http://beginveganbegun.es/wp-json/wp/v2/posts?filter[date_query][after]=1984-01-01&per_page=3333`)
     const headers = new Headers();
     headers.append("Access-Control-Allow-Headers", "*");
     const opts = { method: 'GET',
@@ -19,6 +18,7 @@ class App extends Component {
                    mode: 'cors',
                    cache: 'default' };
 
+    fetch(`http://beginveganbegun.es/wp-json/wp/v2/posts?filter[date_query][after]=1984-01-01&per_page=3333`, opts)
     .then(response => response.json())
       .then(recipes => {
         this.setState({
